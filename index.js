@@ -3,9 +3,22 @@ import path from 'path';
 import favicon from 'serve-favicon';
 import data from './data/data.json'
 import routes from './src/routes/crmRoutes'
+import mongoose from 'mongoose'
+import bodyParser from 'body-parser'
 
 const app = express();
 const PORT = 3000;
+
+// mongoose connection
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/CRMdb', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
+
+// bodyParser setup
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 routes(app);
 
