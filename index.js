@@ -2,9 +2,12 @@ import express from 'express';
 import path from 'path';
 import favicon from 'serve-favicon';
 import data from './data/data.json'
+import routes from './src/routes/crmRoutes'
 
 const app = express();
 const PORT = 3000;
+
+routes(app);
 
 /**
  * Following code shows how to load static files. 
